@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<ruleset name="WMS Explorer">
+    <description>PHPCS ruleset for WMS Explorer plugin</description>
+
+    <arg name="extensions" value="php"/>
+    <arg value="sp"/>
+    <arg name="colors"/>
+
+    <rule ref="WordPress-Extra">
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+    </rule>
+
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals.Found">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="wms"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.DB.SlowDBQuery.slow_db_query_meta_query">
+        <exclude-pattern>includes/database/*</exclude-pattern>
+    </rule>
+
+    <config name="testVersion" value="7.4-"/>
+
+    <file>includes</file>
+    <file>templates</file>
+</ruleset>

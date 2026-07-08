@@ -1,0 +1,91 @@
+/* WMS Explorer — استایل مدیریت (راستچین) */
+
+.wms-return-requests {
+    max-width: 900px;
+    direction: rtl;
+    text-align: right;
+}
+
+.wms-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.wms-status-pending,
+.wms-status-wms-pending-return {
+    background: #fcf0f1;
+    color: #9e1e1e;
+}
+
+.wms-status-approved,
+.wms-status-wms-return-approved {
+    background: #edfaef;
+    color: #1e7e34;
+}
+
+.wms-status-rejected,
+.wms-status-wms-return-rejected {
+    background: #fcf0f1;
+    color: #9e1e1e;
+}
+
+.wms-status-refunded,
+.wms-status-wms-completed {
+    background: #e7f5fd;
+    color: #0073aa;
+}
+
+.wms-status-cancelled {
+    background: #f0f0f1;
+    color: #757575;
+}
+
+/* داشبورد درخواست‌ها */
+#wms-claims-table .wms-status-select {
+    min-width: 120px;
+}
+
+#wms-claims-table th {
+    text-align: right;
+}
+
+.subsubsub {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 20px;
+}
+
+.subsubsub li {
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.subsubsub a {
+    text-decoration: none;
+    color: #646970;
+}
+
+.subsubsub a.current {
+    color: #2271b1;
+    font-weight: 600;
+}
+
+.subsubsub .count {
+    color: #646970;
+    font-size: 13px;
+}
+
+/* فرم‌ها */
+.wms-return-requests select,
+.wms-return-requests input[type="text"],
+.wms-return-requests input[type="email"],
+.wms-return-requests input[type="number"],
+.wms-return-requests textarea {
+    direction: rtl;
+    text-align: right;
+}

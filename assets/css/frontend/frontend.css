@@ -1,0 +1,106 @@
+/* WMS Explorer — استایل مشتری (راستچین) */
+
+.wms-return-requests,
+.wms-guest-return,
+.wms-return-form-single {
+    direction: rtl;
+    text-align: right;
+    max-width: 700px;
+}
+
+.wms-return-requests h2,
+.wms-guest-return h2,
+.wms-return-form-single h2 {
+    margin-bottom: 15px;
+}
+
+.wms-return-requests table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.wms-return-requests table th,
+.wms-return-requests table td {
+    padding: 10px;
+    text-align: right;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.wms-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.wms-status-pending {
+    background: #fcf0f1;
+    color: #9e1e1e;
+}
+
+.wms-status-approved {
+    background: #edfaef;
+    color: #1e7e34;
+}
+
+.wms-status-rejected {
+    background: #fcf0f1;
+    color: #9e1e1e;
+}
+
+.wms-status-refunded {
+    background: #e7f5fd;
+    color: #0073aa;
+}
+
+.wms-status-cancelled {
+    background: #f0f0f1;
+    color: #757575;
+}
+
+.wms-guest-auth-form input[type="email"],
+.wms-guest-auth-form input[type="number"],
+.wms-guest-auth-form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    direction: rtl;
+    text-align: right;
+}
+
+.wms-return-requests textarea,
+.wms-guest-return textarea,
+.wms-return-form-single textarea {
+    width: 100%;
+    direction: rtl;
+    text-align: right;
+}
+
+.wms-return-requests select,
+.wms-guest-return select,
+.wms-return-form-single select {
+    direction: rtl;
+}
+
+.wms-error {
+    color: #9e1e1e;
+    padding: 10px;
+    background: #fcf0f1;
+    border: 1px solid #9e1e1e;
+    border-radius: 4px;
+    direction: rtl;
+    text-align: right;
+}
+
+/* جدول اقلام */
+.wms-return-requests .shop_table th,
+.wms-return-requests .shop_table td {
+    text-align: right;
+}
+
+/* دکمه‌ها */
+.button {
+    direction: rtl;
+}
