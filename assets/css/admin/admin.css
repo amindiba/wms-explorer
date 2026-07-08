@@ -1,91 +1,328 @@
-/* WMS Explorer — استایل مدیریت (راستچین) */
+/* WMS Explorer — Admin UI (Minimal Professional) */
+/* رنگ اصلی: #1e73be | ثانویه: #2271b1 | موفقیت: #00a32a | خطا: #d63638 */
 
-.wms-return-requests {
-    max-width: 900px;
+/* ── Reset & Base ── */
+.wms-wrap {
     direction: rtl;
     text-align: right;
+    font-family: Tahoma, 'Segoe UI', Arial, sans-serif;
+    max-width: 1200px;
+    margin: 20px auto 0;
 }
 
-.wms-status {
-    display: inline-block;
-    padding: 3px 8px;
-    border-radius: 3px;
+.wms-wrap h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1d2327;
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+/* ── فیلتر وضعیت ── */
+.wms-status-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    background: #f0f0f1;
+    border-radius: 8px;
+    padding: 4px;
+    flex-wrap: wrap;
+}
+
+.wms-status-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #50575e;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.wms-status-tab:hover {
+    background: #fff;
+    color: #1d2327;
+}
+
+.wms-status-tab.active {
+    background: #fff;
+    color: #1d2327;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    font-weight: 600;
+}
+
+.wms-status-tab .count {
+    background: rgba(0,0,0,0.06);
+    padding: 1px 7px;
+    border-radius: 10px;
     font-size: 12px;
     font-weight: 600;
-    line-height: 1.4;
 }
 
-.wms-status-pending,
-.wms-status-wms-pending-return {
+.wms-status-tab.active .count {
+    background: #1e73be;
+    color: #fff;
+}
+
+/* ── جدول درخواست‌ها ── */
+.wms-table-wrap {
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+}
+
+.wms-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.wms-table thead th {
+    background: #f6f7f7;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #646970;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.wms-table tbody td {
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #1d2327;
+    border-bottom: 1px solid #f0f0f1;
+    vertical-align: middle;
+}
+
+.wms-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.wms-table tbody tr:hover {
+    background: #f6f7f7;
+}
+
+.wms-table .wms-col-rma {
+    font-weight: 600;
+    color: #1e73be;
+    font-size: 13px;
+}
+
+.wms-table .wms-col-order a {
+    color: #1e73be;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.wms-table .wms-col-order a:hover {
+    text-decoration: underline;
+}
+
+.wms-table .wms-col-amount {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.wms-table .wms-col-date {
+    color: #646970;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* ── نشان وضعیت ── */
+.wms-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.wms-badge-pending {
     background: #fcf0f1;
     color: #9e1e1e;
 }
 
-.wms-status-approved,
-.wms-status-wms-return-approved {
+.wms-badge-approved {
     background: #edfaef;
     color: #1e7e34;
 }
 
-.wms-status-rejected,
-.wms-status-wms-return-rejected {
+.wms-badge-rejected {
     background: #fcf0f1;
     color: #9e1e1e;
 }
 
-.wms-status-refunded,
-.wms-status-wms-completed {
+.wms-badge-refunded {
     background: #e7f5fd;
     color: #0073aa;
 }
 
-.wms-status-cancelled {
+.wms-badge-cancelled {
     background: #f0f0f1;
     color: #757575;
 }
 
-/* داشبورد درخواست‌ها */
-#wms-claims-table .wms-status-select {
-    min-width: 120px;
+/* ── سلکتور وضعیت در جدول ── */
+.wms-status-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23646970'/%3E%3C/svg%3E") no-repeat left 10px center;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 6px 28px 6px 10px;
+    font-size: 13px;
+    color: #1d2327;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    min-width: 130px;
 }
 
-#wms-claims-table th {
-    text-align: right;
+.wms-status-select:focus {
+    border-color: #1e73be;
+    outline: none;
+    box-shadow: 0 0 0 1px #1e73be;
 }
 
-.subsubsub {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 20px;
-}
-
-.subsubsub li {
-    display: inline-block;
-    margin-left: 8px;
-    margin-right: 0;
-}
-
-.subsubsub a {
+/* ── دکمه مشاهده ── */
+.wms-btn-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 12px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #1d2327;
     text-decoration: none;
-    color: #646970;
+    transition: all 0.15s;
+    white-space: nowrap;
 }
 
-.subsubsub a.current {
-    color: #2271b1;
+.wms-btn-view:hover {
+    background: #f6f7f7;
+    border-color: #8c8f94;
+    color: #1d2327;
+}
+
+/* ── صفحه‌بندی ── */
+.wms-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 16px;
+}
+
+.wms-pagination a,
+.wms-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.wms-pagination a {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    color: #1d2327;
+}
+
+.wms-pagination a:hover {
+    background: #f6f7f7;
+    border-color: #8c8f94;
+}
+
+.wms-pagination .current {
+    background: #1e73be;
+    border: 1px solid #1e73be;
+    color: #fff;
     font-weight: 600;
 }
 
-.subsubsub .count {
+/* ── پیام خالی ── */
+.wms-empty {
+    text-align: center;
+    padding: 60px 20px;
     color: #646970;
-    font-size: 13px;
 }
 
-/* فرم‌ها */
-.wms-return-requests select,
-.wms-return-requests input[type="text"],
-.wms-return-requests input[type="email"],
-.wms-return-requests input[type="number"],
-.wms-return-requests textarea {
-    direction: rtl;
-    text-align: right;
+.wms-empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.4;
+}
+
+.wms-empty p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ── نوار بالا (تعداد کل) ── */
+.wms-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.wms-total {
+    font-size: 13px;
+    color: #646970;
+}
+
+.wms-total strong {
+    color: #1d2327;
+}
+
+/* ── ریسپانسیو ── */
+@media (max-width: 782px) {
+    .wms-table thead {
+        display: none;
+    }
+
+    .wms-table tbody tr {
+        display: block;
+        padding: 12px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .wms-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        border-bottom: none;
+    }
+
+    .wms-table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #646970;
+        font-size: 12px;
+    }
+
+    .wms-status-tabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
 }

@@ -1,106 +1,386 @@
-/* WMS Explorer — استایل مشتری (راستچین) */
+/* WMS Explorer — Frontend UI (Minimal Professional) */
+/* راستچین | مینیمال | حرفه‌ای */
 
-.wms-return-requests,
-.wms-guest-return,
-.wms-return-form-single {
+/* ── کانتینر اصلی ── */
+.wms-container {
     direction: rtl;
     text-align: right;
+    font-family: Tahoma, 'Segoe UI', Arial, sans-serif;
     max-width: 700px;
+    margin: 0 auto;
 }
 
-.wms-return-requests h2,
-.wms-guest-return h2,
-.wms-return-form-single h2 {
-    margin-bottom: 15px;
+/* ── عنوان بخش ── */
+.wms-section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d2327;
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
 }
 
-.wms-return-requests table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+/* ── لیست درخواست‌ها ── */
+.wms-requests-list {
+    margin-bottom: 30px;
 }
 
-.wms-return-requests table th,
-.wms-return-requests table td {
-    padding: 10px;
-    text-align: right;
-    border-bottom: 1px solid #e0e0e0;
+.wms-request-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.15s;
 }
 
-.wms-status {
-    display: inline-block;
-    padding: 3px 8px;
-    border-radius: 3px;
+.wms-request-card:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.wms-request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.wms-request-rma {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e73be;
+}
+
+.wms-request-meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: #646970;
+    flex-wrap: wrap;
+}
+
+.wms-request-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.wms-request-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f1;
+}
+
+/* ── نشان وضعیت ── */
+.wms-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
 }
 
-.wms-status-pending {
+.wms-badge-pending {
     background: #fcf0f1;
     color: #9e1e1e;
 }
 
-.wms-status-approved {
+.wms-badge-approved {
     background: #edfaef;
     color: #1e7e34;
 }
 
-.wms-status-rejected {
+.wms-badge-rejected {
     background: #fcf0f1;
     color: #9e1e1e;
 }
 
-.wms-status-refunded {
+.wms-badge-refunded {
     background: #e7f5fd;
     color: #0073aa;
 }
 
-.wms-status-cancelled {
+.wms-badge-cancelled {
     background: #f0f0f1;
     color: #757575;
 }
 
-.wms-guest-auth-form input[type="email"],
-.wms-guest-auth-form input[type="number"],
-.wms-guest-auth-form input[type="text"] {
+/* ── فرم درخواست ── */
+.wms-form-section {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.wms-form-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+    margin: 0 0 20px;
+}
+
+.wms-form-group {
+    margin-bottom: 16px;
+}
+
+.wms-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1d2327;
+    margin-bottom: 6px;
+}
+
+.wms-form-group label .required {
+    color: #d63638;
+}
+
+.wms-form-control {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    direction: rtl;
-    text-align: right;
-}
-
-.wms-return-requests textarea,
-.wms-guest-return textarea,
-.wms-return-form-single textarea {
-    width: 100%;
-    direction: rtl;
-    text-align: right;
-}
-
-.wms-return-requests select,
-.wms-guest-return select,
-.wms-return-form-single select {
-    direction: rtl;
-}
-
-.wms-error {
-    color: #9e1e1e;
-    padding: 10px;
-    background: #fcf0f1;
-    border: 1px solid #9e1e1e;
+    padding: 8px 12px;
+    border: 1px solid #c3c4c7;
     border-radius: 4px;
-    direction: rtl;
-    text-align: right;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1d2327;
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    box-sizing: border-box;
 }
 
-/* جدول اقلام */
-.wms-return-requests .shop_table th,
-.wms-return-requests .shop_table td {
-    text-align: right;
+.wms-form-control:focus {
+    border-color: #1e73be;
+    outline: none;
+    box-shadow: 0 0 0 1px #1e73be;
 }
 
-/* دکمه‌ها */
-.button {
-    direction: rtl;
+select.wms-form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23646970'/%3E%3C/svg%3E") no-repeat left 12px center;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+textarea.wms-form-control {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* ── جدول اقلام ── */
+.wms-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.wms-items-table th {
+    background: #f6f7f7;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #646970;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-align: right;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.wms-items-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+    color: #1d2327;
+    border-bottom: 1px solid #f0f0f1;
+    vertical-align: middle;
+}
+
+.wms-items-table tbody tr:hover {
+    background: #f6f7f7;
+}
+
+.wms-items-table input[type="number"] {
+    width: 60px;
+    padding: 4px 8px;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.wms-items-table input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* ── دکمه‌ها ── */
+.wms-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: none;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.wms-btn-primary {
+    background: #1e73be;
+    color: #fff;
+}
+
+.wms-btn-primary:hover {
+    background: #155799;
+    color: #fff;
+}
+
+.wms-btn-secondary {
+    background: #fff;
+    color: #1d2327;
+    border: 1px solid #c3c4c7;
+}
+
+.wms-btn-secondary:hover {
+    background: #f6f7f7;
+    border-color: #8c8f94;
+}
+
+.wms-btn-danger {
+    background: #fff;
+    color: #d63638;
+    border: 1px solid #d63638;
+}
+
+.wms-btn-danger:hover {
+    background: #d63638;
+    color: #fff;
+}
+
+.wms-btn-sm {
+    padding: 5px 12px;
+    font-size: 12px;
+}
+
+/* ── فرم احراز هویت مهمان ── */
+.wms-guest-auth {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 400px;
+}
+
+/* ── پیام‌ها ── */
+.wms-message {
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wms-message-success {
+    background: #edfaef;
+    color: #1e7e34;
+    border: 1px solid #b8e6bf;
+}
+
+.wms-message-error {
+    background: #fcf0f1;
+    color: #9e1e1e;
+    border: 1px solid #f5c6cb;
+}
+
+.wms-message-info {
+    background: #e7f5fd;
+    color: #0073aa;
+    border: 1px solid #b3d7f2;
+}
+
+/* ── خالی ── */
+.wms-empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #646970;
+}
+
+.wms-empty-state svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.3;
+    margin-bottom: 12px;
+}
+
+.wms-empty-state p {
+    font-size: 14px;
+    margin: 0 0 16px;
+}
+
+/* ── لودینگ ── */
+.wms-loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #1e73be;
+    border-radius: 50%;
+    animation: wms-spin 0.8s linear infinite;
+}
+
+@keyframes wms-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ── ریسپانسیو ── */
+@media (max-width: 600px) {
+    .wms-container {
+        padding: 0 4px;
+    }
+
+    .wms-request-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .wms-request-meta {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .wms-request-footer {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .wms-items-table {
+        font-size: 12px;
+    }
+
+    .wms-items-table th,
+    .wms-items-table td {
+        padding: 8px 6px;
+    }
+
+    .wms-btn {
+        width: 100%;
+    }
 }

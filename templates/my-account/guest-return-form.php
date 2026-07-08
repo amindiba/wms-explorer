@@ -1,86 +1,97 @@
 <?php
 /**
- * قالب: فرم مرجوعی مهمان
- * @var bool   $authenticated
- * @var object $order
- * @var array  $eligible_items
- * @var string $email
- * @var int    $order_id
- * @var string $key
+ * قالب: فرم مرجوعی مهمان (UI حرفه‌ای)
  */
 defined( 'ABSPATH' ) || exit;
 ?>
 
-<div class="wms-guest-return" style="direction:rtl;text-align:right;">
-	<h2>مرجوعی مهمان</h2>
+<div class="wms-container">
+	<h2 class="wms-section-title">مرجوعی مهمان</h2>
 
 	<?php if ( ! $authenticated ) : ?>
-		<p>اطلاعات سفارش خود را وارد کنید تا درخواست مرجوعی ثبت کنید.</p>
+		<div class="wms-guest-auth">
+			<p style="margin-bottom:16px;color:#646970;">اطلاعات سفارش خود را وارد کنید.</p>
 
-		<form method="get" class="wms-guest-auth-form">
-			<p>
-				<label for="guest-order-id">شماره سفارش:</label>
-				<input type="number" name="order" id="guest-order-id" required style="width:100%;" />
-			</p>
-			<p>
-				<label for="guest-email">ایمیل:</label>
-				<input type="email" name="email" id="guest-email" required style="width:100%;" />
-			</p>
-			<p><button type="submit" class="button">جستجوی سفارش</button></p>
-		</form>
+			<form method="get">
+				<div class="wms-form-group">
+					<label for="guest-order-id">شماره سفارش <span class="required">*</span></label>
+					<input type="number" name="order" id="guest-order-id" class="wms-form-control" required />
+				</div>
+				<div class="wms-form-group">
+					<label for="guest-email">ایمیل <span class="required">*</span></label>
+					<input type="email" name="email" id="guest-email" class="wms-form-control" required />
+				</div>
+				<button type="submit" class="wms-btn wms-btn-primary" style="width:100%;">جستجوی سفارش</button>
+			</form>
+		</div>
 
 	<?php elseif ( empty( $eligible_items ) ) : ?>
-		<p>این سفارش واجد شرایط مرجوعی نیست.</p>
+		<div class="wms-message wms-message-info">
+			این سفارش واجد شرایط مرجوعی نیست.
+		</div>
 
 	<?php else : ?>
-		<p>سفارش #<?php echo esc_html( $order->get_id() ); ?> — اقلام قابل مرجوعی را انتخاب کنید:</p>
+		<div class="wms-message wms-message-info">
+			سفارش #<?php echo esc_html( $order->get_id() ); ?> — اقلام قابل مرجوعی را انتخاب کنید.
+		</div>
 
-		<form method="post" id="wms-guest-return-form" class="wms-guest-form-wrapper">
-			<?php wp_nonce_field( 'wms_guest_return', 'guest_return_nonce' ); ?>
-			<input type="hidden" name="order_id" value="<?php echo esc_attr( $order_id ); ?>" />
-			<input type="hidden" name="email" value="<?php echo esc_attr( $email ); ?>" />
-			<input type="hidden" name="key" value="<?php echo esc_attr( $key ); ?>" />
+		<div class="wms-form-section">
+			<form method="post" id="wms-guest-return-form">
+				<?php wp_nonce_field( 'wms_guest_return', 'guest_return_nonce' ); ?>
+				<input type="hidden" name="order_id" value="<?php echo esc_attr( $order_id ); ?>" />
+				<input type="hidden" name="email" value="<?php echo esc_attr( $email ); ?>" />
+				<input type="hidden" name="key" value="<?php echo esc_attr( $key ); ?>" />
 
-			<table class="shop_table">
-				<thead>
-					<tr>
-						<th><input type="checkbox" id="wms-guest-select-all" /></th>
-						<th>محصول</th>
-						<th>تعداد موجود</th>
-						<th>تعداد مرجوعی</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ( $eligible_items as $item ) : ?>
-						<tr>
-							<td>
-								<input type="checkbox" class="wms-guest-item-check"
-									   name="items[<?php echo esc_attr( $item['order_item_id'] ); ?>][return]" value="1" />
-								<input type="hidden" name="items[<?php echo esc_attr( $item['order_item_id'] ); ?>][order_item_id]"
-									   value="<?php echo esc_attr( $item['order_item_id'] ); ?>" />
-							</td>
-							<td><?php echo esc_html( $item['product_name'] ); ?></td>
-							<td><?php echo esc_html( $item['quantity'] ); ?></td>
-							<td><input type="number" name="items[<?php echo esc_attr( $item['order_item_id'] ); ?>][quantity]"
-									   value="<?php echo esc_attr( $item['quantity'] ); ?>" min="1"
-									   max="<?php echo esc_attr( $item['quantity'] ); ?>" class="small-text" disabled /></td>
-						</tr>
-					<?php endforeach; ?>
-				</tbody>
-			</table>
+				<div class="wms-form-group">
+					<label>اقلام قابل مرجوعی</label>
+					<table class="wms-items-table">
+						<thead>
+							<tr>
+								<th style="width:40px;"><input type="checkbox" id="wms-guest-select-all" /></th>
+								<th>محصول</th>
+								<th style="width:80px;">تعداد</th>
+								<th style="width:80px;">مرجوعی</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach ( $eligible_items as $item ) : ?>
+								<tr>
+									<td>
+										<input type="checkbox" class="wms-guest-item-check"
+											   name="items[<?php echo esc_attr( $item['order_item_id'] ); ?>][return]" value="1" />
+										<input type="hidden" name="items[<?php echo esc_attr( $item['order_item_id'] ); ?>][order_item_id]"
+											   value="<?php echo esc_attr( $item['order_item_id'] ); ?>" />
+									</td>
+									<td><?php echo esc_html( $item['product_name'] ); ?></td>
+									<td><?php echo esc_html( $item['quantity'] ); ?></td>
+									<td>
+										<input type="number" name="items[<?php echo esc_attr( $item['order_item_id'] ); ?>][quantity]"
+											   value="<?php echo esc_attr( $item['quantity'] ); ?>" min="1"
+											   max="<?php echo esc_attr( $item['quantity'] ); ?>" disabled />
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
 
-			<p><label>دلیل:</label>
-				<select name="return_reason" required>
-					<option value="">انتخاب...</option>
-					<?php foreach ( WMS_Helpers::get_return_reasons() as $label ) : ?>
-						<option value="<?php echo esc_attr( $label ); ?>"><?php echo esc_html( $label ); ?></option>
-					<?php endforeach; ?>
-				</select>
-			</p>
+				<div class="wms-form-group">
+					<label>دلیل <span class="required">*</span></label>
+					<select name="return_reason" class="wms-form-control" required>
+						<option value="">انتخاب...</option>
+						<?php foreach ( WMS_Helpers::get_return_reasons() as $label ) : ?>
+							<option value="<?php echo esc_attr( $label ); ?>"><?php echo esc_html( $label ); ?></option>
+						<?php endforeach; ?>
+					</select>
+				</div>
 
-			<p><textarea name="return_notes" rows="3" placeholder="توضیحات..."></textarea></p>
+				<div class="wms-form-group">
+					<label>توضیحات</label>
+					<textarea name="return_notes" class="wms-form-control" rows="3" placeholder="توضیحات..."></textarea>
+				</div>
 
-			<button type="submit" class="button">ارسال درخواست مرجوعی</button>
-		</form>
+				<button type="submit" class="wms-btn wms-btn-primary">ارسال درخواست مرجوعی</button>
+			</form>
+		</div>
 	<?php endif; ?>
 </div>
